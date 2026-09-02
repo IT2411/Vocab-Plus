@@ -1,0 +1,109 @@
+# ==============================
+# Android / Gradle
+# ==============================
+
+.gradle/
+build/
+**/build/
+
+# Local Gradle configuration
+gradle-app.setting
+.gradletasknamecache
+
+# ==============================
+# Android Studio / IntelliJ IDEA
+# ==============================
+
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# ==============================
+# Android Build Outputs
+# ==============================
+
+*.apk
+*.aab
+*.ap_
+*.dex
+
+# ==============================
+# Local Android SDK
+# ==============================
+
+local.properties
+
+# ==============================
+# Kotlin
+# ==============================
+
+.kotlin/
+.kotlin_module
+
+# ==============================
+# Java / Kotlin Generated Files
+# ==============================
+
+*.class
+
+# ==============================
+# Native / CMake
+# ==============================
+
+.cxx/
+.externalNativeBuild/
+
+# ==============================
+# Tests / Coverage
+# ==============================
+
+.coverage
+*.coverage
+coverage/
+jacoco/
+*.exec
+
+# ==============================
+# OS Generated Files
+# ==============================
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ==============================
+# Logs
+# ==============================
+
+*.log
+
+# ==============================
+# Temporary Files
+# ==============================
+
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# ==============================
+# Environment / Secrets
+# ==============================
+
+.env
+.env.*
+!.env.example
+
+# ==============================
+# Firebase / Google Services
+# ==============================
+
+google-services.json
+
+# ==============================
+# Generated Resources
+# ==============================
+
+/captures/
