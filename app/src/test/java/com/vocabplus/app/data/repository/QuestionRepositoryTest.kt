@@ -1,7 +1,7 @@
 package com.vocabplus.app.data.repository
 
-import com.vocabplus.app.core.util.DefaultDispatcherProvider
 import com.vocabplus.app.core.util.Result
+import com.vocabplus.app.core.util.TestDispatcherProvider
 import com.vocabplus.app.data.datasource.AssetQuestionDataSource
 import com.vocabplus.app.domain.model.Category
 import com.vocabplus.app.domain.model.Question
@@ -15,9 +15,10 @@ import org.junit.Test
 class QuestionRepositoryTest {
 
     private val mockDataSource = mockk<AssetQuestionDataSource>()
+    private val testDispatchers = TestDispatcherProvider()
     private val repository = QuestionRepositoryImpl(
         dataSource = mockDataSource,
-        dispatchers = DefaultDispatcherProvider()
+        dispatchers = testDispatchers
     )
 
     private fun sampleList(category: Category, count: Int): List<Question> =

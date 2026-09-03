@@ -1,28 +1,40 @@
 package com.vocabplus.app.core.navigation
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.vocabplus.app.VocabApplication
+import com.vocabplus.app.core.util.DateUtils
 import com.vocabplus.app.domain.model.Category
 import com.vocabplus.app.domain.model.Question
-import com.vocabplus.app.domain.model.SectionState
 import com.vocabplus.app.domain.model.UserStats
 import com.vocabplus.app.presentation.home.HomeScreen
+import com.vocabplus.app.presentation.home.HomeViewModel
 import com.vocabplus.app.presentation.quiz.QuizScreen
+import com.vocabplus.app.presentation.quiz.QuizUiState
+import com.vocabplus.app.presentation.quiz.QuizViewModel
 import com.vocabplus.app.presentation.result.DailySummaryScreen
 import com.vocabplus.app.presentation.result.SectionResultScreen
 import com.vocabplus.app.presentation.revision.RevisionScreen
 import com.vocabplus.app.presentation.settings.SettingsScreen
 import com.vocabplus.app.presentation.statistics.StatisticsScreen
 
-// Sample static questions for UI review
 private val previewSampleQuestion = Question(
-    id = "syn_preview",
+    id = "syn_sample",
     category = Category.SYNONYM,
     prompt = "Which word most nearly means 'perfunctory'?",
     options = listOf("Thorough", "Superficial", "Enthusiastic", "Elaborate"),
@@ -36,22 +48,35 @@ fun VocabNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController()
 ) {
+    val context = LocalContext.current.applicationContext as VocabApplication
+    val container = context.container
+    val todayIso = DateUtils.todayIso()
+
     NavHost(
         navController = navController,
         startDestination = Screen.Home.route,
         modifier = modifier
     ) {
         composable(Screen.Home.route) {
+            val homeViewModel: HomeViewModel = viewModel(
+                factory = HomeViewModel.provideFactory(
+                    quizRepository = container.quizRepository,
+                    userProgressRepository = container.userProgressRepository,
+                    dateIso = todayIso
+                )
+            )
+            val homeState by homeViewModel.uiState.collectAsState()
+
             HomeScreen(
-                totalPoints = 12840L,
-                gigaStreak = 7,
-                synonymStreak = 12,
-                antonymStreak = 9,
-                idiomStreak = 4,
-                synonymState = SectionState.NOT_STARTED,
-                antonymState = SectionState.NOT_STARTED,
-                idiomState = SectionState.NOT_STARTED,
-                revisionQuestionsCount = 24,
+                totalPoints = homeState.totalPoints,
+                gigaStreak = homeState.gigaStreak,
+                synonymStreak = homeState.synonymStreak,
+                antonymStreak = homeState.antonymStreak,
+                idiomStreak = homeState.idiomStreak,
+                synonymState = homeState.synonymState,
+                antonymState = homeState.antonymState,
+                idiomState = homeState.idiomState,
+                revisionQuestionsCount = homeState.revisionQuestionsCount,
                 onCategoryClick = { category ->
                     navController.navigate(Screen.Quiz.createRoute(category))
                 },
@@ -74,17 +99,56 @@ fun VocabNavHost(
             val slug = backStackEntry.arguments?.getString("categorySlug").orEmpty()
             val category = Category.fromSlug(slug) ?: Category.SYNONYM
 
-            QuizScreen(
-                category = category,
-                questionIndex = 0,
-                totalQuestions = 10,
-                question = previewSampleQuestion.copy(category = category),
-                onAnswerSubmitted = {},
-                onContinueClick = {
-                    navController.navigate(Screen.SectionResult.createRoute(category, 10, 10))
-                },
-                onBackClick = { navController.popBackStack() }
+            val quizViewModel: QuizViewModel = viewModel(
+                key = "$category-$todayIso",
+                factory = QuizViewModel.provideFactory(
+                    category = category,
+                    dateIso = todayIso,
+                    quizRepository = container.quizRepository,
+                    userProgressRepository = container.userProgressRepository
+                )
             )
+            val state by quizViewModel.uiState.collectAsState()
+
+            when (val current = state) {
+                is QuizUiState.Loading -> {
+                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        CircularProgressIndicator()
+                    }
+                }
+                is QuizUiState.Active -> {
+                    QuizScreen(
+                        category = current.category,
+                        questionIndex = current.currentIndex,
+                        totalQuestions = current.totalQuestions,
+                        question = current.currentQuestion,
+                        onAnswerSubmitted = { selectedIndex ->
+                            quizViewModel.onOptionSelected(selectedIndex)
+                        },
+                        onContinueClick = {
+                            quizViewModel.onContinue()
+                        },
+                        onBackClick = { navController.popBackStack() }
+                    )
+                }
+                is QuizUiState.Completed -> {
+                    SectionResultScreen(
+                        category = current.category,
+                        score = current.score,
+                        total = current.totalQuestions,
+                        pointsEarned = current.pointsEarned,
+                        isStreakMaintained = current.isStreakMaintained,
+                        onContinueClick = {
+                            navController.popBackStack(Screen.Home.route, false)
+                        }
+                    )
+                }
+                is QuizUiState.Error -> {
+                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        Text(text = current.message)
+                    }
+                }
+            }
         }
 
         composable(
@@ -132,7 +196,7 @@ fun VocabNavHost(
         composable(Screen.Revision.route) {
             RevisionScreen(
                 questionIndex = 0,
-                totalQuestions = 24,
+                totalQuestions = 10,
                 question = previewSampleQuestion,
                 onAnswerSubmitted = {},
                 onContinueClick = { navController.popBackStack() },
@@ -141,22 +205,9 @@ fun VocabNavHost(
         }
 
         composable(Screen.Statistics.route) {
+            val stats by container.userProgressRepository.getUserStats().collectAsState(initial = UserStats())
             StatisticsScreen(
-                stats = UserStats(
-                    totalPoints = 12840L,
-                    synonymCurrentStreak = 12,
-                    synonymBestStreak = 14,
-                    antonymCurrentStreak = 9,
-                    antonymBestStreak = 10,
-                    idiomCurrentStreak = 4,
-                    idiomBestStreak = 7,
-                    gigaCurrentStreak = 7,
-                    gigaBestStreak = 14,
-                    totalQuestionsAnswered = 1420,
-                    totalCorrectAnswers = 1230,
-                    perfectSectionsCount = 98,
-                    perfectDaysCount = 18
-                ),
+                stats = stats,
                 onBackClick = { navController.popBackStack() }
             )
         }
