@@ -1,0 +1,102 @@
+[
+  {
+    "id": "syn_0001",
+    "category": "synonym",
+    "prompt": "Which word most nearly means 'perfunctory'?",
+    "options": ["Thorough", "Superficial", "Enthusiastic", "Elaborate"],
+    "correctOptionIndex": 1,
+    "explanation": "Perfunctory describes an action carried out with minimal effort, care, or interest.",
+    "exampleSentence": "He gave the dense report a perfunctory review before signing off.",
+    "difficulty": 3
+  },
+  {
+    "id": "syn_0002",
+    "category": "synonym",
+    "prompt": "Which word most nearly means 'ubiquitous'?",
+    "options": ["Omnipresent", "Scarce", "Transient", "Isolated"],
+    "correctOptionIndex": 0,
+    "explanation": "Ubiquitous means present, appearing, or found everywhere simultaneously.",
+    "exampleSentence": "Smartphones have become ubiquitous in modern urban society.",
+    "difficulty": 2
+  },
+  {
+    "id": "syn_0003",
+    "category": "synonym",
+    "prompt": "Which word most nearly means 'laconic'?",
+    "options": ["Verbose", "Concise", "Deceptive", "Melodious"],
+    "correctOptionIndex": 1,
+    "explanation": "Laconic describes using very few words in speech or writing to convey meaning.",
+    "exampleSentence": "His laconic reply of 'No' made his stance immediately clear.",
+    "difficulty": 3
+  },
+  {
+    "id": "syn_0004",
+    "category": "synonym",
+    "prompt": "Which word most nearly means 'mitigate'?",
+    "options": ["Intensify", "Alleviate", "Complicate", "Distort"],
+    "correctOptionIndex": 1,
+    "explanation": "Mitigate means to make something less severe, harmful, or painful.",
+    "exampleSentence": "The engineer introduced fail-safes to mitigate catastrophic system errors.",
+    "difficulty": 2
+  },
+  {
+    "id": "syn_0005",
+    "category": "synonym",
+    "prompt": "Which word most nearly means 'fastidious'?",
+    "options": ["Meticulous", "Careless", "Hesitant", "Indifferent"],
+    "correctOptionIndex": 0,
+    "explanation": "Fastidious means very attentive to and concerned about accuracy and detail.",
+    "exampleSentence": "The editor was fastidious about grammatical consistency.",
+    "difficulty": 3
+  },
+  {
+    "id": "syn_0006",
+    "category": "synonym",
+    "prompt": "Which word most nearly means 'esoteric'?",
+    "options": ["Obscure", "Popular", "Elementary", "Practical"],
+    "correctOptionIndex": 0,
+    "explanation": "Esoteric describes knowledge intended for or understood by only a small group with specialized knowledge.",
+    "exampleSentence": "The symposium discussed esoteric mathematical concepts.",
+    "difficulty": 4
+  },
+  {
+    "id": "syn_0007",
+    "category": "synonym",
+    "prompt": "Which word most nearly means 'ephemeral'?",
+    "options": ["Everlasting", "Transient", "Substantial", "Monumental"],
+    "correctOptionIndex": 1,
+    "explanation": "Ephemeral means lasting for a very short time.",
+    "exampleSentence": "The blossom's ephemeral beauty faded within forty-eight hours.",
+    "difficulty": 3
+  },
+  {
+    "id": "syn_0008",
+    "category": "synonym",
+    "prompt": "Which word most nearly means 'truculent'?",
+    "options": ["Peaceable", "Aggressive", "Submissive", "Timid"],
+    "correctOptionIndex": 1,
+    "explanation": "Truculent means eager or quick to argue, fight, or show hostility.",
+    "exampleSentence": "His truculent demeanor during the committee debate surprised everyone.",
+    "difficulty": 4
+  },
+  {
+    "id": "syn_0009",
+    "category": "synonym",
+    "prompt": "Which word most nearly means 'bolster'?",
+    "options": ["Undermine", "Reinforce", "Critique", "Dismantle"],
+    "correctOptionIndex": 1,
+    "explanation": "Bolster means to support, strengthen, or prop up.",
+    "exampleSentence": "The new financial report served to bolster investor confidence.",
+    "difficulty": 2
+  },
+  {
+    "id": "syn_0010",
+    "category": "synonym",
+    "prompt": "Which word most nearly means 'elucidate'?",
+    "options": ["Clarify", "Obscure", "Contradict", "Ignore"],
+    "correctOptionIndex": 0,
+    "explanation": "Elucidate means to make something clear or explain it in detail.",
+    "exampleSentence": "The professor used diagrams to elucidate the complex chemical process.",
+    "difficulty": 3
+  }
+]

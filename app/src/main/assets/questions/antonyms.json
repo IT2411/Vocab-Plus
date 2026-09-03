@@ -1,0 +1,102 @@
+[
+  {
+    "id": "ant_0001",
+    "category": "antonym",
+    "prompt": "Which word is the most opposite in meaning to 'abundant'?",
+    "options": ["Scarce", "Plentiful", "Ample", "Bountiful"],
+    "correctOptionIndex": 0,
+    "explanation": "Abundant means existing in large quantities. Scarce means insufficient or in short supply.",
+    "exampleSentence": "While water is abundant in coastal regions, it remains scarce in arid deserts.",
+    "difficulty": 1
+  },
+  {
+    "id": "ant_0002",
+    "category": "antonym",
+    "prompt": "Which word is the most opposite in meaning to 'zenith'?",
+    "options": ["Pinnacle", "Apex", "Nadir", "Acme"],
+    "correctOptionIndex": 2,
+    "explanation": "Zenith refers to the highest point or peak. Nadir refers to the lowest point of greatest adversity.",
+    "exampleSentence": "His political career transitioned rapidly from its zenith to its absolute nadir.",
+    "difficulty": 3
+  },
+  {
+    "id": "ant_0003",
+    "category": "antonym",
+    "prompt": "Which word is the most opposite in meaning to 'reticent'?",
+    "options": ["Reserved", "Garrulous", "Hesitant", "Discrete"],
+    "correctOptionIndex": 1,
+    "explanation": "Reticent means not revealing one's thoughts readily. Garrulous means excessively talkative.",
+    "exampleSentence": "Unlike his reticent brother, Mark was famously garrulous at dinner parties.",
+    "difficulty": 4
+  },
+  {
+    "id": "ant_0004",
+    "category": "antonym",
+    "prompt": "Which word is the most opposite in meaning to 'ephemeral'?",
+    "options": ["Fleeting", "Perpetual", "Momentary", "Deciduous"],
+    "correctOptionIndex": 1,
+    "explanation": "Ephemeral means lasting a very short time. Perpetual means never ending or changing.",
+    "exampleSentence": "Fads are ephemeral, but classic design achieves perpetual appeal.",
+    "difficulty": 3
+  },
+  {
+    "id": "ant_0005",
+    "category": "antonym",
+    "prompt": "Which word is the most opposite in meaning to 'tenuous'?",
+    "options": ["Fragile", "Substantial", "Slim", "Dubious"],
+    "correctOptionIndex": 1,
+    "explanation": "Tenuous means very weak, slight, or insubstantial. Substantial means firm, solid, or strong.",
+    "exampleSentence": "The prosecution's tenuous claims were refuted by substantial physical evidence.",
+    "difficulty": 3
+  },
+  {
+    "id": "ant_0006",
+    "category": "antonym",
+    "prompt": "Which word is the most opposite in meaning to 'austere'?",
+    "options": ["Spartan", "Extravagant", "Severe", "Somber"],
+    "correctOptionIndex": 1,
+    "explanation": "Austere means having an extremely plain and simple style. Extravagant means lavish and opulent.",
+    "exampleSentence": "The monastery maintained an austere aesthetic, in sharp contrast to the extravagant palace.",
+    "difficulty": 3
+  },
+  {
+    "id": "ant_0007",
+    "category": "antonym",
+    "prompt": "Which word is the most opposite in meaning to 'benevolent'?",
+    "options": ["Altruistic", "Malevolent", "Generous", "Humane"],
+    "correctOptionIndex": 1,
+    "explanation": "Benevolent means well-meaning and kindly. Malevolent means having or showing a wish to do evil.",
+    "exampleSentence": "The monarch's outwardly benevolent smile hid his malevolent intentions.",
+    "difficulty": 2
+  },
+  {
+    "id": "ant_0008",
+    "category": "antonym",
+    "prompt": "Which word is the most opposite in meaning to 'gregarious'?",
+    "options": ["Sociable", "Outgoing", "Solitary", "Companionable"],
+    "correctOptionIndex": 2,
+    "explanation": "Gregarious means fond of company and sociable. Solitary means done or existing alone.",
+    "exampleSentence": "Elephants are gregarious animals, whereas tigers lead a largely solitary life.",
+    "difficulty": 3
+  },
+  {
+    "id": "ant_0009",
+    "category": "antonym",
+    "prompt": "Which word is the most opposite in meaning to 'dogmatic'?",
+    "options": ["Inflexible", "Open-minded", "Assertive", "Authoritative"],
+    "correctOptionIndex": 1,
+    "explanation": "Dogmatic means inclined to lay down principles as incontrovertibly true. Open-minded means willing to consider new ideas.",
+    "exampleSentence": "A scientist must avoid dogmatic thinking and remain open-minded to contradictory findings.",
+    "difficulty": 3
+  },
+  {
+    "id": "ant_0010",
+    "category": "antonym",
+    "prompt": "Which word is the most opposite in meaning to 'lucid'?",
+    "options": ["Coherent", "Obscure", "Clear", "Luminous"],
+    "correctOptionIndex": 1,
+    "explanation": "Lucid means expressed clearly and easy to understand. Obscure means not clearly expressed or difficult to grasp.",
+    "exampleSentence": "His initial statement was lucid, but the follow-up clarification was thoroughly obscure.",
+    "difficulty": 3
+  }
+]

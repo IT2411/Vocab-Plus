@@ -1,0 +1,152 @@
+[
+  {
+    "id": "idm_0001",
+    "category": "idiom",
+    "prompt": "What is the meaning of 'to burn the midnight oil'?",
+    "options": [
+      "To waste energy recklessly",
+      "To work or study late into the night",
+      "To ignite a dispute among colleagues",
+      "To conclude a project early"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "'Burning the midnight oil' refers to working or studying late into the night.",
+    "exampleSentence": "She had to burn the midnight oil all week to submit her research paper on time.",
+    "difficulty": 2
+  },
+  {
+    "id": "idm_0002",
+    "category": "idiom",
+    "prompt": "What is the meaning of 'to bite the bullet'?",
+    "options": [
+      "To endure a painful situation with fortitude",
+      "To take an unnecessary physical risk",
+      "To express anger without restraint",
+      "To interrupt someone while they speak"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "'Biting the bullet' means to face a difficult or unpleasant situation with bravery and acceptance.",
+    "exampleSentence": "He decided to bite the bullet and apologize for his earlier mistake.",
+    "difficulty": 2
+  },
+  {
+    "id": "idm_0003",
+    "category": "idiom",
+    "prompt": "What is the meaning of 'to read between the lines'?",
+    "options": [
+      "To examine text with a magnifying tool",
+      "To discover implied meaning not explicitly stated",
+      "To memorize literature verbatim",
+      "To critique the formatting of a publication"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "'Reading between the lines' means understanding the hidden or implied meaning behind words.",
+    "exampleSentence": "Reading between the lines of the announcement, the staff understood layoffs were imminent.",
+    "difficulty": 2
+  },
+  {
+    "id": "idm_0004",
+    "category": "idiom",
+    "prompt": "What is the meaning of 'to throw in the towel'?",
+    "options": [
+      "To offer help in housekeeping",
+      "To surrender or admit defeat",
+      "To initiate a sports competition",
+      "To clean an industrial workplace"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "'Throwing in the towel' originates from boxing and means admitting defeat or giving up.",
+    "exampleSentence": "After hours of failing to fix the server crash, the administrator threw in the towel for the evening.",
+    "difficulty": 1
+  },
+  {
+    "id": "idm_0005",
+    "category": "idiom",
+    "prompt": "What is the meaning of 'a devil's advocate'?",
+    "options": [
+      "A lawyer representing criminal offenses",
+      "One who argues an opposing stance solely to test validity",
+      "A person who intentionally causes discord",
+      "A judge delivering harsh penalties"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "'Playing devil's advocate' means presenting a contrary argument to test the soundness of the main proposition.",
+    "exampleSentence": "I agree with your marketing proposal, but let me play devil's advocate to stress-test your assumptions.",
+    "difficulty": 3
+  },
+  {
+    "id": "idm_0006",
+    "category": "idiom",
+    "prompt": "What is the meaning of 'to steal someone's thunder'?",
+    "options": [
+      "To steal property during an emergency",
+      "To preempt someone's praise by presenting their ideas first",
+      "To shout down an opposing speaker",
+      "To create loud ambient noise"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "'Stealing someone's thunder' means taking credit or attention away from someone by anticipating their action or announcement.",
+    "exampleSentence": "She inadvertently stole the CEO's thunder by leaking the product launch before the keynote.",
+    "difficulty": 3
+  },
+  {
+    "id": "idm_0007",
+    "category": "idiom",
+    "prompt": "What is the meaning of 'to face the music'?",
+    "options": [
+      "To attend a classical concert",
+      "To accept the unpleasant consequences of one's actions",
+      "To harmonize during musical practice",
+      "To ignore warnings from authorities"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "'Facing the music' means confronting the unpleasant reality or punishment for one's misdeeds.",
+    "exampleSentence": "After breaking the lab equipment, the students had to face the music with the department chair.",
+    "difficulty": 2
+  },
+  {
+    "id": "idm_0008",
+    "category": "idiom",
+    "prompt": "What is the meaning of 'to cut corners'?",
+    "options": [
+      "To take a geometrical shortcut",
+      "To perform a task improperly to save time or money",
+      "To prune overgrown bushes",
+      "To drive recklessly around street bends"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "'Cutting corners' refers to doing something in the easiest, cheapest, or fastest way, often sacrificing quality and safety.",
+    "exampleSentence": "The contractor was penalized for cutting corners on structural reinforcement.",
+    "difficulty": 1
+  },
+  {
+    "id": "idm_0009",
+    "category": "idiom",
+    "prompt": "What is the meaning of 'to leave no stone unturned'?",
+    "options": [
+      "To conduct an exhaustive and thorough investigation",
+      "To perform arduous landscaping tasks",
+      "To disrupt natural historical sites",
+      "To avoid touching physical clues"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "'Leaving no stone unturned' means trying every possible method or pursuing every clue to achieve an objective.",
+    "exampleSentence": "The audit team left no stone unturned in their search for the accounting discrepancy.",
+    "difficulty": 2
+  },
+  {
+    "id": "idm_0010",
+    "category": "idiom",
+    "prompt": "What is the meaning of 'the elephant in the room'?",
+    "options": [
+      "An exotic animal in an urban exhibit",
+      "An obvious major problem everyone avoids discussing",
+      "A massive logistical obstacle that cannot be cleared",
+      "An overly dominant leader in a meeting"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "'The elephant in the room' refers to a glaring problem or controversial issue that is obvious to all but deliberately ignored.",
+    "exampleSentence": "No one wanted to discuss the declining revenue, but it remained the elephant in the room.",
+    "difficulty": 2
+  }
+]
