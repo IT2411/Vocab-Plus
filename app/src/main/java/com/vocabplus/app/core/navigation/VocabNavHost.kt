@@ -20,7 +20,6 @@ import androidx.navigation.navArgument
 import com.vocabplus.app.VocabApplication
 import com.vocabplus.app.core.util.DateUtils
 import com.vocabplus.app.domain.model.Category
-import com.vocabplus.app.domain.model.Question
 import com.vocabplus.app.domain.model.UserStats
 import com.vocabplus.app.presentation.home.HomeScreen
 import com.vocabplus.app.presentation.home.HomeViewModel
@@ -29,19 +28,13 @@ import com.vocabplus.app.presentation.quiz.QuizUiState
 import com.vocabplus.app.presentation.quiz.QuizViewModel
 import com.vocabplus.app.presentation.result.DailySummaryScreen
 import com.vocabplus.app.presentation.result.SectionResultScreen
+import com.vocabplus.app.presentation.revision.RevisionCompletedScreen
+import com.vocabplus.app.presentation.revision.RevisionEmptyScreen
 import com.vocabplus.app.presentation.revision.RevisionScreen
+import com.vocabplus.app.presentation.revision.RevisionUiState
+import com.vocabplus.app.presentation.revision.RevisionViewModel
 import com.vocabplus.app.presentation.settings.SettingsScreen
 import com.vocabplus.app.presentation.statistics.StatisticsScreen
-
-private val previewSampleQuestion = Question(
-    id = "syn_sample",
-    category = Category.SYNONYM,
-    prompt = "Which word most nearly means 'perfunctory'?",
-    options = listOf("Thorough", "Superficial", "Enthusiastic", "Elaborate"),
-    correctOptionIndex = 1,
-    explanation = "Perfunctory describes something done with minimal effort, care, or interest.",
-    exampleSentence = "He gave the legal document a perfunctory review before signing."
-)
 
 @Composable
 fun VocabNavHost(
@@ -194,14 +187,49 @@ fun VocabNavHost(
         }
 
         composable(Screen.Revision.route) {
-            RevisionScreen(
-                questionIndex = 0,
-                totalQuestions = 10,
-                question = previewSampleQuestion,
-                onAnswerSubmitted = {},
-                onContinueClick = { navController.popBackStack() },
-                onBackClick = { navController.popBackStack() }
+            val revisionViewModel: RevisionViewModel = viewModel(
+                factory = RevisionViewModel.provideFactory(
+                    questionRepository = container.questionRepository,
+                    userProgressRepository = container.userProgressRepository
+                )
             )
+            val state by revisionViewModel.uiState.collectAsState()
+
+            when (val current = state) {
+                is RevisionUiState.Loading -> {
+                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        CircularProgressIndicator()
+                    }
+                }
+                is RevisionUiState.Empty -> {
+                    RevisionEmptyScreen(onBackClick = { navController.popBackStack() })
+                }
+                is RevisionUiState.Active -> {
+                    RevisionScreen(
+                        questionIndex = current.currentIndex,
+                        totalQuestions = current.totalQuestions,
+                        question = current.currentQuestion,
+                        selectedOptionIndex = current.selectedOptionIndex,
+                        isAnswerEvaluated = current.isAnswerEvaluated,
+                        onOptionSelected = { revisionViewModel.onOptionSelected(it) },
+                        onContinueClick = { revisionViewModel.onContinue() },
+                        onBackClick = { navController.popBackStack() }
+                    )
+                }
+                is RevisionUiState.Completed -> {
+                    RevisionCompletedScreen(
+                        score = current.score,
+                        totalQuestions = current.totalQuestions,
+                        bonusPointsEarned = current.bonusPointsEarned,
+                        onDoneClick = { navController.popBackStack(Screen.Home.route, false) }
+                    )
+                }
+                is RevisionUiState.Error -> {
+                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        Text(text = current.message)
+                    }
+                }
+            }
         }
 
         composable(Screen.Statistics.route) {
