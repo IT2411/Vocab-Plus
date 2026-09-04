@@ -48,24 +48,24 @@ class QuizViewModel(
                     return@launch
                 }
 
-                // If already completed previously, show completed state
-                if (sectionProgress.isComplete) {
-                    val score = sectionProgress.score
-                    val total = sectionProgress.questions.size
+                answersMap.putAll(sectionProgress.answers)
+
+                // If already completed or all 10 questions answered, show Completed directly (PRD §15)
+                if (sectionProgress.isComplete || (answersMap.size == questions.size && questions.isNotEmpty())) {
+                    val score = answersMap.values.count { it.isCorrect }
+                    val total = questions.size
                     _uiState.value = QuizUiState.Completed(
                         category = category,
                         score = score,
                         totalQuestions = total,
-                        pointsEarned = sectionProgress.totalPointsEarned,
+                        pointsEarned = answersMap.values.sumOf { it.pointsAwarded },
                         isStreakMaintained = score == total
                     )
                     return@launch
                 }
 
-                // Restore previous answers if any
-                answersMap.putAll(sectionProgress.answers)
-                currentIndex = answersMap.size.coerceAtMost(questions.size - 1)
-
+                // Resume at first unanswered question
+                currentIndex = answersMap.size.coerceIn(0, questions.size - 1)
                 showCurrentQuestion()
             } catch (e: Exception) {
                 _uiState.value = QuizUiState.Error(e.localizedMessage ?: "Failed to load quiz")
@@ -74,7 +74,7 @@ class QuizViewModel(
     }
 
     private fun showCurrentQuestion() {
-        if (currentIndex >= questions.size) {
+        if (currentIndex >= questions.size || answersMap.size == questions.size) {
             completeSection()
             return
         }
@@ -112,13 +112,11 @@ class QuizViewModel(
         answersMap[question.id] = answer
 
         viewModelScope.launch {
-            // Persist points immediately (Idempotent per answer)
             userProgressRepository.recordQuestionAnswer(dateIso, category, answer)
             if (pointsAwarded > 0) {
                 userProgressRepository.addPoints(pointsAwarded)
             }
 
-            // Update in-progress state in repository
             if (quizRepository is QuizRepositoryImpl) {
                 quizRepository.updateSectionProgress(
                     dateIso = dateIso,
@@ -141,7 +139,7 @@ class QuizViewModel(
 
     fun onContinue() {
         currentIndex++
-        if (currentIndex >= questions.size) {
+        if (currentIndex >= questions.size || answersMap.size == questions.size) {
             completeSection()
         } else {
             showCurrentQuestion()
@@ -168,7 +166,6 @@ class QuizViewModel(
 
             userProgressRepository.recordSectionCompleted(category, isPerfect)
 
-            // Check if day is all complete for Giga streak
             val dailyState = quizRepository.getOrCreateDailyQuiz(dateIso)
             if (dailyState.isAllCompleted) {
                 userProgressRepository.recordGigaStreak(dailyState.isGigaStreakAchieved)

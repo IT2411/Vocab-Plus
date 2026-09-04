@@ -2,9 +2,11 @@ package com.vocabplus.app.core.navigation
 
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -56,7 +58,7 @@ fun VocabNavHost(
         exitTransition = { fadeOut() },
         popEnterTransition = { fadeIn() },
         popExitTransition = { fadeOut() },
-        modifier = modifier
+        modifier = modifier.background(MaterialTheme.colorScheme.background)
     ) {
         composable(Screen.Home.route) {
             val homeViewModel: HomeViewModel = viewModel(
@@ -74,13 +76,20 @@ fun VocabNavHost(
                 synonymStreak = homeState.synonymStreak,
                 antonymStreak = homeState.antonymStreak,
                 idiomStreak = homeState.idiomStreak,
+                synonymScore = homeState.synonymScore,
+                antonymScore = homeState.antonymScore,
+                idiomScore = homeState.idiomScore,
                 synonymState = homeState.synonymState,
                 antonymState = homeState.antonymState,
                 idiomState = homeState.idiomState,
                 isDailyCompleted = homeState.isDailyCompleted,
                 revisionQuestionsCount = homeState.revisionQuestionsCount,
-                onCategoryClick = { category ->
-                    navController.navigate(Screen.Quiz.createRoute(category))
+                onCategoryClick = { category, isCompleted, score ->
+                    if (isCompleted) {
+                        navController.navigate(Screen.SectionResult.createRoute(category, score, 10))
+                    } else {
+                        navController.navigate(Screen.Quiz.createRoute(category))
+                    }
                 },
                 onDailySummaryClick = {
                     navController.navigate(Screen.DailySummary.route)

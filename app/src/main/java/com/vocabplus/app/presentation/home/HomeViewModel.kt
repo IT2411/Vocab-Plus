@@ -27,7 +27,6 @@ class HomeViewModel(
 
     fun loadData() {
         viewModelScope.launch {
-            // Ensure today's quiz is initialized
             quizRepository.getOrCreateDailyQuiz(dateIso)
 
             combine(
@@ -40,6 +39,9 @@ class HomeViewModel(
                     synonymStreak = stats.synonymCurrentStreak,
                     antonymStreak = stats.antonymCurrentStreak,
                     idiomStreak = stats.idiomCurrentStreak,
+                    synonymScore = dailyState.synonyms.score,
+                    antonymScore = dailyState.antonyms.score,
+                    idiomScore = dailyState.idioms.score,
                     synonymState = dailyState.synonyms.state,
                     antonymState = dailyState.antonyms.state,
                     idiomState = dailyState.idioms.state,

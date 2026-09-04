@@ -1,6 +1,7 @@
 package com.vocabplus.app.core.designsystem
 
 import android.app.Activity
+import android.graphics.drawable.ColorDrawable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
@@ -50,8 +51,10 @@ fun VocabTheme(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.background.toArgb()
-            window.navigationBarColor = colorScheme.background.toArgb()
+            val bgArgb = colorScheme.background.toArgb()
+            window.setBackgroundDrawable(ColorDrawable(bgArgb))
+            window.statusBarColor = bgArgb
+            window.navigationBarColor = bgArgb
             WindowCompat.getInsetsController(window, view).apply {
                 isAppearanceLightStatusBars = !darkTheme
                 isAppearanceLightNavigationBars = !darkTheme

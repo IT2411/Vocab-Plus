@@ -44,12 +44,15 @@ fun HomeScreen(
     synonymStreak: Int,
     antonymStreak: Int,
     idiomStreak: Int,
+    synonymScore: Int,
+    antonymScore: Int,
+    idiomScore: Int,
     synonymState: SectionState,
     antonymState: SectionState,
     idiomState: SectionState,
     isDailyCompleted: Boolean,
     revisionQuestionsCount: Int,
-    onCategoryClick: (Category) -> Unit,
+    onCategoryClick: (Category, isCompleted: Boolean, score: Int) -> Unit,
     onDailySummaryClick: () -> Unit,
     onRevisionClick: () -> Unit,
     onStatsClick: () -> Unit,
@@ -182,30 +185,35 @@ fun HomeScreen(
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            // Category Cards
+            // Synonyms Card
             CategoryDailyCard(
                 category = Category.SYNONYM,
                 streak = synonymStreak,
                 state = synonymState,
-                onClick = { onCategoryClick(Category.SYNONYM) }
+                score = synonymScore,
+                onClick = { onCategoryClick(Category.SYNONYM, synonymState == SectionState.COMPLETED, synonymScore) }
             )
 
             Spacer(modifier = Modifier.height(10.dp))
 
+            // Antonyms Card
             CategoryDailyCard(
                 category = Category.ANTONYM,
                 streak = antonymStreak,
                 state = antonymState,
-                onClick = { onCategoryClick(Category.ANTONYM) }
+                score = antonymScore,
+                onClick = { onCategoryClick(Category.ANTONYM, antonymState == SectionState.COMPLETED, antonymScore) }
             )
 
             Spacer(modifier = Modifier.height(10.dp))
 
+            // Idioms Card
             CategoryDailyCard(
                 category = Category.IDIOM,
                 streak = idiomStreak,
                 state = idiomState,
-                onClick = { onCategoryClick(Category.IDIOM) }
+                score = idiomScore,
+                onClick = { onCategoryClick(Category.IDIOM, idiomState == SectionState.COMPLETED, idiomScore) }
             )
 
             Spacer(modifier = Modifier.height(20.dp))
@@ -243,10 +251,11 @@ private fun CategoryDailyCard(
     category: Category,
     streak: Int,
     state: SectionState,
+    score: Int,
     onClick: () -> Unit
 ) {
     val stateDescription = when (state) {
-        SectionState.COMPLETED -> "Completed"
+        SectionState.COMPLETED -> "Completed with score $score out of 10"
         SectionState.IN_PROGRESS -> "In Progress"
         SectionState.NOT_STARTED -> "Not Started"
     }
@@ -270,7 +279,7 @@ private fun CategoryDailyCard(
                 )
                 Spacer(modifier = Modifier.height(2.dp))
                 Text(
-                    text = "10 questions",
+                    text = if (state == SectionState.COMPLETED) "$score / 10 score" else "10 questions",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
