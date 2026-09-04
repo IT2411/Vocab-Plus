@@ -251,7 +251,20 @@ fun VocabNavHost(
         }
 
         composable(Screen.Settings.route) {
+            val settingsViewModel: com.vocabplus.app.presentation.settings.SettingsViewModel = viewModel(
+                factory = com.vocabplus.app.presentation.settings.SettingsViewModel.provideFactory(
+                    preferencesRepository = container.userPreferencesRepository
+                )
+            )
+            val settingsState by settingsViewModel.uiState.collectAsState()
+
             SettingsScreen(
+                state = settingsState,
+                onThemeSelected = { settingsViewModel.onThemeSelected(it) },
+                onNotificationsToggled = { settingsViewModel.onNotificationToggled(it) },
+                onShowResetDialog = { settingsViewModel.onShowResetDialog() },
+                onDismissResetDialog = { settingsViewModel.onDismissResetDialog() },
+                onConfirmReset = { settingsViewModel.onConfirmReset() },
                 onBackClick = { navController.popBackStack() }
             )
         }

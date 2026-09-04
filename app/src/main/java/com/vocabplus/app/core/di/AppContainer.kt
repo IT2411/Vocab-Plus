@@ -6,11 +6,13 @@ import com.vocabplus.app.core.util.DispatcherProvider
 import com.vocabplus.app.data.datasource.AssetQuestionDataSource
 import com.vocabplus.app.data.datasource.AssetQuestionDataSourceImpl
 import com.vocabplus.app.data.local.VocabDatabase
+import com.vocabplus.app.data.repository.DataStoreUserPreferencesRepository
 import com.vocabplus.app.data.repository.QuestionRepositoryImpl
 import com.vocabplus.app.data.repository.RoomQuizRepository
 import com.vocabplus.app.data.repository.RoomUserProgressRepository
 import com.vocabplus.app.domain.repository.QuestionRepository
 import com.vocabplus.app.domain.repository.QuizRepository
+import com.vocabplus.app.domain.repository.UserPreferencesRepository
 import com.vocabplus.app.domain.repository.UserProgressRepository
 
 interface AppContainer {
@@ -19,6 +21,7 @@ interface AppContainer {
     val questionRepository: QuestionRepository
     val quizRepository: QuizRepository
     val userProgressRepository: UserProgressRepository
+    val userPreferencesRepository: UserPreferencesRepository
 }
 
 class DefaultAppContainer(private val context: Context) : AppContainer {
@@ -44,5 +47,9 @@ class DefaultAppContainer(private val context: Context) : AppContainer {
 
     override val quizRepository: QuizRepository by lazy {
         RoomQuizRepository(database, questionRepository, dispatchers)
+    }
+
+    override val userPreferencesRepository: UserPreferencesRepository by lazy {
+        DataStoreUserPreferencesRepository(context, database, dispatchers)
     }
 }
