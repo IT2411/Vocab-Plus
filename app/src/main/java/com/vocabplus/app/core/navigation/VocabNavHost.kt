@@ -233,9 +233,19 @@ fun VocabNavHost(
         }
 
         composable(Screen.Statistics.route) {
-            val stats by container.userProgressRepository.getUserStats().collectAsState(initial = UserStats())
+            val statsViewModel: com.vocabplus.app.presentation.statistics.StatisticsViewModel = viewModel(
+                factory = com.vocabplus.app.presentation.statistics.StatisticsViewModel.provideFactory(
+                    database = container.database,
+                    userProgressRepository = container.userProgressRepository
+                )
+            )
+            val statsState by statsViewModel.uiState.collectAsState()
+
             StatisticsScreen(
-                stats = stats,
+                stats = statsState.overallStats,
+                synonymPerformance = statsState.synonymPerformance,
+                antonymPerformance = statsState.antonymPerformance,
+                idiomPerformance = statsState.idiomPerformance,
                 onBackClick = { navController.popBackStack() }
             )
         }

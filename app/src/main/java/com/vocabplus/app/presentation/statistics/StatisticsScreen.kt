@@ -19,11 +19,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.vocabplus.app.core.designsystem.components.VocabCard
 import com.vocabplus.app.core.designsystem.components.VocabTopAppBar
+import com.vocabplus.app.domain.model.CategoryPerformance
 import com.vocabplus.app.domain.model.UserStats
 
 @Composable
 fun StatisticsScreen(
     stats: UserStats,
+    synonymPerformance: CategoryPerformance,
+    antonymPerformance: CategoryPerformance,
+    idiomPerformance: CategoryPerformance,
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -45,6 +49,7 @@ fun StatisticsScreen(
         ) {
             Spacer(modifier = Modifier.height(16.dp))
 
+            // Overall
             Text(
                 text = "OVERALL",
                 style = MaterialTheme.typography.labelSmall,
@@ -65,6 +70,7 @@ fun StatisticsScreen(
 
             Spacer(modifier = Modifier.height(24.dp))
 
+            // Streaks
             Text(
                 text = "STREAKS",
                 style = MaterialTheme.typography.labelSmall,
@@ -83,6 +89,23 @@ fun StatisticsScreen(
                 Spacer(modifier = Modifier.height(8.dp))
                 StatRow("Current Giga streak", "${stats.gigaCurrentStreak}")
                 StatRow("Best Giga streak", "${stats.gigaBestStreak}")
+            }
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            // Category Performance Breakdown
+            Text(
+                text = "CATEGORY PERFORMANCE",
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            VocabCard {
+                StatRow("Synonyms accuracy", "%.1f%%".format(synonymPerformance.accuracy))
+                Spacer(modifier = Modifier.height(8.dp))
+                StatRow("Antonyms accuracy", "%.1f%%".format(antonymPerformance.accuracy))
+                Spacer(modifier = Modifier.height(8.dp))
+                StatRow("Idioms accuracy", "%.1f%%".format(idiomPerformance.accuracy))
             }
 
             Spacer(modifier = Modifier.height(32.dp))
