@@ -98,5 +98,55 @@
     "explanation": "Elucidate means to make something clear or explain it in detail.",
     "exampleSentence": "The professor used diagrams to elucidate the complex chemical process.",
     "difficulty": 3
+  },
+  {
+    "id": "syn_0011",
+    "category": "synonym",
+    "prompt": "Which word most nearly means 'alacrity'?",
+    "options": ["Reluctance", "Eagerness", "Hesitation", "Apathy"],
+    "correctOptionIndex": 1,
+    "explanation": "Alacrity means brisk and cheerful readiness or promptness in response.",
+    "exampleSentence": "She accepted the invitation to keynote the conference with genuine alacrity.",
+    "difficulty": 3
+  },
+  {
+    "id": "syn_0012",
+    "category": "synonym",
+    "prompt": "Which word most nearly means 'cacophony'?",
+    "options": ["Harmony", "Dissonance", "Silence", "Symphony"],
+    "correctOptionIndex": 1,
+    "explanation": "Cacophony refers to a harsh, discordant mixture of sounds.",
+    "exampleSentence": "A cacophony of car horns and construction drills echoed through the alley.",
+    "difficulty": 2
+  },
+  {
+    "id": "syn_0013",
+    "category": "synonym",
+    "prompt": "Which word most nearly means 'pragmatic'?",
+    "options": ["Idealistic", "Practical", "Theoretical", "Irrational"],
+    "correctOptionIndex": 1,
+    "explanation": "Pragmatic means dealing with things sensibly and realistically based on practical considerations.",
+    "exampleSentence": "We need a pragmatic solution that works within our current budget constraints.",
+    "difficulty": 2
+  },
+  {
+    "id": "syn_0014",
+    "category": "synonym",
+    "prompt": "Which word most nearly means 'surreptitious'?",
+    "options": ["Overt", "Clandestine", "Forthright", "Luminous"],
+    "correctOptionIndex": 1,
+    "explanation": "Surreptitious describes an action kept secret, especially because it would not be approved of.",
+    "exampleSentence": "He cast a surreptitious glance at his watch during the interminable lecture.",
+    "difficulty": 4
+  },
+  {
+    "id": "syn_0015",
+    "category": "synonym",
+    "prompt": "Which word most nearly means 'enervate'?",
+    "options": ["Energize", "Exhaust", "Motivate", "Inspire"],
+    "correctOptionIndex": 1,
+    "explanation": "Enervate means to cause someone to feel drained of energy or vitality.",
+    "exampleSentence": "The oppressive tropical humidity served to enervate the trekking team.",
+    "difficulty": 3
   }
 ]

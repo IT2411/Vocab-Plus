@@ -98,5 +98,55 @@
     "explanation": "Lucid means expressed clearly and easy to understand. Obscure means not clearly expressed or difficult to grasp.",
     "exampleSentence": "His initial statement was lucid, but the follow-up clarification was thoroughly obscure.",
     "difficulty": 3
+  },
+  {
+    "id": "ant_0011",
+    "category": "antonym",
+    "prompt": "Which word is the most opposite in meaning to 'frivolous'?",
+    "options": ["Solemn", "Trivial", "Silly", "Flippant"],
+    "correctOptionIndex": 0,
+    "explanation": "Frivolous means not having any serious purpose or value. Solemn means formal, dignified, and earnest.",
+    "exampleSentence": "The court dismissed the frivolous lawsuit during a solemn hearing.",
+    "difficulty": 3
+  },
+  {
+    "id": "ant_0012",
+    "category": "antonym",
+    "prompt": "Which word is the most opposite in meaning to 'loquacious'?",
+    "options": ["Talkative", "Taciturn", "Voluble", "Articulate"],
+    "correctOptionIndex": 1,
+    "explanation": "Loquacious means tending to talk a great deal. Taciturn means reserved or uncommunicative in speech.",
+    "exampleSentence": "The host was remarkably loquacious, while her guest remained noticeably taciturn.",
+    "difficulty": 4
+  },
+  {
+    "id": "ant_0013",
+    "category": "antonym",
+    "prompt": "Which word is the most opposite in meaning to 'venerable'?",
+    "options": ["Respected", "Disreputable", "Hallowed", "Distinguished"],
+    "correctOptionIndex": 1,
+    "explanation": "Venerable means accorded a great deal of respect because of age or wisdom. Disreputable means not considered respectable.",
+    "exampleSentence": "The venerable institution refused to associate with disreputable lobbyists.",
+    "difficulty": 3
+  },
+  {
+    "id": "ant_0014",
+    "category": "antonym",
+    "prompt": "Which word is the most opposite in meaning to 'candor'?",
+    "options": ["Honesty", "Deceit", "Frankness", "Sincerity"],
+    "correctOptionIndex": 1,
+    "explanation": "Candor means the quality of being open and honest in expression. Deceit means concealing or misrepresenting truth.",
+    "exampleSentence": "We appreciated the diplomat's candor after enduring weeks of evasive deceit.",
+    "difficulty": 3
+  },
+  {
+    "id": "ant_0015",
+    "category": "antonym",
+    "prompt": "Which word is the most opposite in meaning to 'superfluous'?",
+    "options": ["Excessive", "Essential", "Redundant", "Unnecessary"],
+    "correctOptionIndex": 1,
+    "explanation": "Superfluous means unnecessary, especially through being more than enough. Essential means absolutely necessary.",
+    "exampleSentence": "Eliminate superfluous adjectives and keep only what is essential to the sentence.",
+    "difficulty": 2
   }
 ]

@@ -148,5 +148,80 @@
     "explanation": "'The elephant in the room' refers to a glaring problem or controversial issue that is obvious to all but deliberately ignored.",
     "exampleSentence": "No one wanted to discuss the declining revenue, but it remained the elephant in the room.",
     "difficulty": 2
+  },
+  {
+    "id": "idm_0011",
+    "category": "idiom",
+    "prompt": "What is the meaning of 'to hit the nail on the head'?",
+    "options": [
+      "To cause an accidental injury",
+      "To state a fact or describe a situation exactly right",
+      "To hammer building materials securely",
+      "To criticize someone unfairly"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "'Hitting the nail on the head' means pinpointing the precise truth or identifying exactly what is causing a problem.",
+    "exampleSentence": "Her concise analysis of the project delay hit the nail right on the head.",
+    "difficulty": 1
+  },
+  {
+    "id": "idm_0012",
+    "category": "idiom",
+    "prompt": "What is the meaning of 'to see eye to eye'?",
+    "options": [
+      "To establish physical eye contact",
+      "To agree fully on an issue",
+      "To argue about visual perspective",
+      "To inspect fine detail in a design"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "'Seeing eye to eye' means having the same opinion or agreeing completely with someone.",
+    "exampleSentence": "The two co-founders rarely saw eye to eye on their long-term hiring strategy.",
+    "difficulty": 1
+  },
+  {
+    "id": "idm_0013",
+    "category": "idiom",
+    "prompt": "What is the meaning of 'a silver lining'?",
+    "options": [
+      "An expensive textile seam",
+      "A consoling or hopeful aspect of an otherwise bleak situation",
+      "An unexpected financial penalty",
+      "A meteorological anomaly"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "'A silver lining' refers to an advantage or positive element that comes from a bad situation.",
+    "exampleSentence": "The cancellation gave us extra time to polish the pitch, which was a genuine silver lining.",
+    "difficulty": 2
+  },
+  {
+    "id": "idm_0014",
+    "category": "idiom",
+    "prompt": "What is the meaning of 'to spill the beans'?",
+    "options": [
+      "To reveal secret information prematurely",
+      "To create culinary waste",
+      "To stumble during an athletic race",
+      "To argue over grocery costs"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "'Spilling the beans' means inadvertently or indiscreetly divulging a secret.",
+    "exampleSentence": "Don't tell Mark about the surprise celebration because he will inevitably spill the beans.",
+    "difficulty": 1
+  },
+  {
+    "id": "idm_0015",
+    "category": "idiom",
+    "prompt": "What is the meaning of 'to throw caution to the wind'?",
+    "options": [
+      "To take a reckless risk without regard for consequences",
+      "To check weather forecasts before sailing",
+      "To discard protective equipment safely",
+      "To advise colleagues against hasty actions"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "'Throwing caution to the wind' means acting recklessly or deciding to take a significant risk despite known dangers.",
+    "exampleSentence": "He threw caution to the wind, quit his stable corporate job, and founded a startup.",
+    "difficulty": 2
   }
 ]
