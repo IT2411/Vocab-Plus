@@ -1,5 +1,7 @@
 package com.vocabplus.app.core.navigation
 
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.CircularProgressIndicator
@@ -20,13 +22,13 @@ import androidx.navigation.navArgument
 import com.vocabplus.app.VocabApplication
 import com.vocabplus.app.core.util.DateUtils
 import com.vocabplus.app.domain.model.Category
-import com.vocabplus.app.domain.model.UserStats
 import com.vocabplus.app.presentation.home.HomeScreen
 import com.vocabplus.app.presentation.home.HomeViewModel
 import com.vocabplus.app.presentation.quiz.QuizScreen
 import com.vocabplus.app.presentation.quiz.QuizUiState
 import com.vocabplus.app.presentation.quiz.QuizViewModel
 import com.vocabplus.app.presentation.result.DailySummaryScreen
+import com.vocabplus.app.presentation.result.DailySummaryViewModel
 import com.vocabplus.app.presentation.result.SectionResultScreen
 import com.vocabplus.app.presentation.revision.RevisionCompletedScreen
 import com.vocabplus.app.presentation.revision.RevisionEmptyScreen
@@ -34,7 +36,9 @@ import com.vocabplus.app.presentation.revision.RevisionScreen
 import com.vocabplus.app.presentation.revision.RevisionUiState
 import com.vocabplus.app.presentation.revision.RevisionViewModel
 import com.vocabplus.app.presentation.settings.SettingsScreen
+import com.vocabplus.app.presentation.settings.SettingsViewModel
 import com.vocabplus.app.presentation.statistics.StatisticsScreen
+import com.vocabplus.app.presentation.statistics.StatisticsViewModel
 
 @Composable
 fun VocabNavHost(
@@ -48,6 +52,10 @@ fun VocabNavHost(
     NavHost(
         navController = navController,
         startDestination = Screen.Home.route,
+        enterTransition = { fadeIn() },
+        exitTransition = { fadeOut() },
+        popEnterTransition = { fadeIn() },
+        popExitTransition = { fadeOut() },
         modifier = modifier
     ) {
         composable(Screen.Home.route) {
@@ -69,9 +77,13 @@ fun VocabNavHost(
                 synonymState = homeState.synonymState,
                 antonymState = homeState.antonymState,
                 idiomState = homeState.idiomState,
+                isDailyCompleted = homeState.isDailyCompleted,
                 revisionQuestionsCount = homeState.revisionQuestionsCount,
                 onCategoryClick = { category ->
                     navController.navigate(Screen.Quiz.createRoute(category))
+                },
+                onDailySummaryClick = {
+                    navController.navigate(Screen.DailySummary.route)
                 },
                 onRevisionClick = {
                     navController.navigate(Screen.Revision.route)
@@ -170,20 +182,35 @@ fun VocabNavHost(
         }
 
         composable(Screen.DailySummary.route) {
-            DailySummaryScreen(
-                totalScore = 27,
-                totalQuestions = 30,
-                totalPointsEarned = 270,
-                synonymScore = 10,
-                antonymScore = 9,
-                idiomScore = 8,
-                isGigaStreakAchieved = false,
-                gigaStreakCount = 0,
-                totalPoints = 13110L,
-                onDoneClick = {
-                    navController.popBackStack(Screen.Home.route, false)
-                }
+            val dailySummaryViewModel: DailySummaryViewModel = viewModel(
+                factory = DailySummaryViewModel.provideFactory(
+                    quizRepository = container.quizRepository,
+                    userProgressRepository = container.userProgressRepository,
+                    dateIso = todayIso
+                )
             )
+            val summaryState by dailySummaryViewModel.uiState.collectAsState()
+
+            if (summaryState.isLoading) {
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    CircularProgressIndicator()
+                }
+            } else {
+                DailySummaryScreen(
+                    totalScore = summaryState.totalScore,
+                    totalQuestions = summaryState.totalQuestions,
+                    totalPointsEarned = summaryState.totalPointsEarned,
+                    synonymScore = summaryState.synonymScore,
+                    antonymScore = summaryState.antonymScore,
+                    idiomScore = summaryState.idiomScore,
+                    isGigaStreakAchieved = summaryState.isGigaStreakAchieved,
+                    gigaStreakCount = summaryState.gigaStreakCount,
+                    totalPoints = summaryState.totalPoints,
+                    onDoneClick = {
+                        navController.popBackStack(Screen.Home.route, false)
+                    }
+                )
+            }
         }
 
         composable(Screen.Revision.route) {
@@ -233,8 +260,8 @@ fun VocabNavHost(
         }
 
         composable(Screen.Statistics.route) {
-            val statsViewModel: com.vocabplus.app.presentation.statistics.StatisticsViewModel = viewModel(
-                factory = com.vocabplus.app.presentation.statistics.StatisticsViewModel.provideFactory(
+            val statsViewModel: StatisticsViewModel = viewModel(
+                factory = StatisticsViewModel.provideFactory(
                     database = container.database,
                     userProgressRepository = container.userProgressRepository
                 )
@@ -251,8 +278,8 @@ fun VocabNavHost(
         }
 
         composable(Screen.Settings.route) {
-            val settingsViewModel: com.vocabplus.app.presentation.settings.SettingsViewModel = viewModel(
-                factory = com.vocabplus.app.presentation.settings.SettingsViewModel.provideFactory(
+            val settingsViewModel: SettingsViewModel = viewModel(
+                factory = SettingsViewModel.provideFactory(
                     preferencesRepository = container.userPreferencesRepository
                 )
             )
